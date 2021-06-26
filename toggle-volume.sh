@@ -1,5 +1,5 @@
 #!/bin/bash
 
 amixer set Master toggle > /dev/null
-    
-bash ./helpers/show-volume-state.sh
+
+bash $(dirname ${BASH_SOURCE})/helpers/show-volume-state.sh
