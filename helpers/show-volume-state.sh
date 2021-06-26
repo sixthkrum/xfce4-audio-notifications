@@ -20,11 +20,10 @@ touch -a '/tmp/volume-notification-id'
 volume_notification_id=$(cat /tmp/volume-notification-id)
 
 if [ -z $volume_notification_id ] ; then
-    volume_notification_id=1
+    volume_notification_id=0
+    echo $volume_notification_id
 fi
 
-new_id=$(gdbus call --session --dest org.freedesktop.Notifications --object-path /org/freedesktop/Notifications --method org.freedesktop.Notifications.Notify volume-notification $volume_notification_id $icon '' ${volume}% [] {} 1500 | grep -Eo [[:digit:]]*, | tr -d ,)
+new_id=$(gdbus call --session --dest org.freedesktop.Notifications --object-path /org/freedesktop/Notifications --method org.freedesktop.Notifications.Notify volume-notification $volume_notification_id $icon '' ${volume}% [] {} 500 | grep -Eo [[:digit:]]*, | tr -d ,)
 
-if [ $volume_notification_id -eq 1 ] ; then
-    echo $new_id > /tmp/volume-notification-id
-fi
+echo $new_id > /tmp/volume-notification-id
