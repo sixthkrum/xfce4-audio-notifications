@@ -2,4 +2,4 @@
 
 amixer set Master 1%- > /dev/null
 
-bash ./helpers/show-volume-state.sh
+bash $(dirname ${BASH_SOURCE})/helpers/show-volume-state.sh
