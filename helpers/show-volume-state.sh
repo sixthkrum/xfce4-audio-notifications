@@ -25,6 +25,6 @@ fi
 
 new_id=$(gdbus call --session --dest org.freedesktop.Notifications --object-path /org/freedesktop/Notifications --method org.freedesktop.Notifications.Notify volume-notification $volume_notification_id $icon '' ${volume}% [] {} 1500 | grep -Eo [[:digit:]]*, | tr -d ,)
 
-if [ $volume_notification_id=='1' ] ; then
+if [ $volume_notification_id -eq 1 ] ; then
     echo $new_id > /tmp/volume-notification-id
 fi
